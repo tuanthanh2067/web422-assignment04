@@ -46,7 +46,7 @@
           </mat-form-field>
         </div>
 
-        <a mat-list-item [routerLink]="['/newReleases']">
+        <a mat-list-item [routerLink]="['/newRelease']">
           <mat-icon mat-list-icon> library_music </mat-icon>
           <p mat-line>New Releases</p>
         </a>
@@ -67,7 +67,7 @@
 
     <mat-sidenav-content class="sidenav-content">
       <!-- Main content -->
-      <app-artist-discography></app-artist-discography>
+      <router-outlet></router-outlet>
       <!-- ------------ -->
 
       <div class="bottom-spacer"></div>
