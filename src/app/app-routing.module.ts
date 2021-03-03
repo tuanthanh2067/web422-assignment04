@@ -8,16 +8,32 @@ import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { ArtistDiscographyComponent } from './artist-discography/artist-discography.component';
 
 const routes: Routes = [
-  { path: 'newRelease', component: NewReleasesComponent },
-  { path: 'artist', component: ArtistDiscographyComponent },
-  { path: 'album', component: AlbumComponent },
-  { path: 'about', component: AboutComponent },
+  {
+    path: 'newRelease',
+    component: NewReleasesComponent,
+    data: { animationState: 'newRelease' },
+  },
+  {
+    path: 'artist',
+    component: ArtistDiscographyComponent,
+    data: { animationState: 'artist' },
+  },
+  {
+    path: 'album',
+    component: AlbumComponent,
+    data: { animationState: 'album' },
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+    data: { animationState: 'about' },
+  },
   {
     path: '',
     redirectTo: 'newRelease',
     pathMatch: 'full',
   },
-  { path: '404', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
