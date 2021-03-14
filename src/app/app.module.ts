@@ -17,14 +17,26 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { NewReleasesComponent } from './new-releases/new-releases.component';
 import { AlbumComponent } from './album/album.component';
 import { ArtistDiscographyComponent } from './artist-discography/artist-discography.component';
 
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 @NgModule({
-  declarations: [AppComponent, AboutComponent, NotFoundComponent, NewReleasesComponent, AlbumComponent, ArtistDiscographyComponent],
+  declarations: [
+    AppComponent,
+    AboutComponent,
+    NotFoundComponent,
+    NewReleasesComponent,
+    AlbumComponent,
+    ArtistDiscographyComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -41,6 +53,9 @@ import { ArtistDiscographyComponent } from './artist-discography/artist-discogra
     MatCardModule,
     MatChipsModule,
     FlexLayoutModule,
+    HttpClientModule,
+    FormsModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
