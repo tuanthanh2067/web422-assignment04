@@ -14,7 +14,7 @@ const routes: Routes = [
     data: { animationState: 'newRelease' },
   },
   {
-    path: 'artist',
+    path: 'artist/:id',
     component: ArtistDiscographyComponent,
     data: { animationState: 'artist' },
   },

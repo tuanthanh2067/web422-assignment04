@@ -1,23 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, Params } from '@angular/router';
 
-import * as albumData from '../data/SearchResultsAlbums.json';
-import * as artistData from '../data/SearchResultsArtist.json';
+import { MusicDataService } from '../music-data.service';
 
 @Component({
   selector: 'app-artist-discography',
   templateUrl: './artist-discography.component.html',
   styleUrls: ['./artist-discography.component.css'],
 })
-export class ArtistDiscographyComponent implements OnInit {
+export class ArtistDiscographyComponent implements OnInit, OnDestroy {
   albums: Array<any>;
   artist: any;
+  paramSubscription: Subscription;
 
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private musicDataService: MusicDataService
+  ) {}
 
   ngOnInit(): void {
-    this.albums = albumData.albums.items;
-    this.artist = (artistData as any).default;
-    console.log(this.albums);
-    console.log(this.artist);
+    this.paramSubscription = this.route.params.subscribe((params: Params) => {
+      this.musicDataService.getArtistById(params.id).subscribe((data) => {
+        this.artist = data;
+      });
+      this.musicDataService.getAlbumsByArtistId(params.id).subscribe((data) => {
+        this.albums = data.items;
+      });
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.paramSubscription.unsubscribe();
   }
 }

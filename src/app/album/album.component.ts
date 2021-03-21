@@ -14,7 +14,7 @@ import { MusicDataService } from '../music-data.service';
 })
 export class AlbumComponent implements OnInit, OnDestroy {
   album: any;
-  paramSubscription: Subscription;
+  albumSubscription: Subscription;
 
   constructor(
     private matSnackBar: MatSnackBar,
@@ -23,10 +23,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.album = (data as any).default;
-    console.log(this.album);
-
-    this.paramSubscription = this.route.params.subscribe((params: Params) => {
+    this.albumSubscription = this.route.params.subscribe((params: Params) => {
       this.musicDataService
         .getAlbumById(params.id)
         .subscribe((data) => (this.album = data));
@@ -34,8 +31,8 @@ export class AlbumComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.paramSubscription) {
-      this.paramSubscription.unsubscribe();
+    if (this.albumSubscription) {
+      this.albumSubscription.unsubscribe();
     }
   }
 
