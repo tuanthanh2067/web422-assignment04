@@ -19,7 +19,7 @@ const routes: Routes = [
     data: { animationState: 'artist' },
   },
   {
-    path: 'album',
+    path: 'album/:id',
     component: AlbumComponent,
     data: { animationState: 'album' },
   },

@@ -27,7 +27,7 @@
         class="album-cover"
         src="{{ album.images[1].url }}"
         alt="album art"
-        [routerLink]="['/album']"
+        [routerLink]="['/album/', album.id]"
       />
       <strong>Release Date: </strong>{{ album.release_date | date: "shortDate"
       }}<br />
