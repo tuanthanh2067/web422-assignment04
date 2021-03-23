@@ -25,7 +25,9 @@
           >
           <br />
 
-          Album: <a routerLink="/album"> {{ favourite.album.name }}</a
+          Album:
+          <a [routerLink]="['/album', favourite.album.id]">
+            {{ favourite.album.name }}</a
           ><br />
           <div *ngIf="favourite.preview_url">
             <br /><audio controls [src]="favourite.preview_url"></audio>
