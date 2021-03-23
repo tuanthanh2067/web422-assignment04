@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import * as data from '../data/SearchResultsAlbum.json';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
 
