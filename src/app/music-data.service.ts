@@ -89,8 +89,15 @@ export class MusicDataService {
 
   getFavourites(): Observable<any> {
     if (this.favouritesList.length > 0) {
-      return this.http.get<any>(
-        `https://api.spotify.com/v1/tracks?ids=${this.favouritesList.join()}`
+      return this.spotifyToken.getBearerToken().pipe(
+        mergeMap((token) => {
+          return this.http.get<any>(
+            `https://api.spotify.com/v1/tracks?ids=${this.favouritesList.join()}`,
+            {
+              headers: { Authorization: `Bearer ${token}` },
+            }
+          );
+        })
       );
     } else {
       return new Observable((o) => {
