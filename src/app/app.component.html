@@ -41,7 +41,15 @@
         <div>
           <mat-form-field appearance="fill">
             <mat-label>Artist</mat-label>
-            <input matInput type="text" />
+            <form (ngSubmit)="handleSearch()">
+              <input
+                matInput
+                type="text"
+                name="searchString"
+                [(ngModel)]="searchString"
+              />
+            </form>
+
             <mat-icon matSuffix>search</mat-icon>
           </mat-form-field>
         </div>
@@ -67,7 +75,7 @@
 
     <mat-sidenav-content class="sidenav-content">
       <!-- Main content -->
-      <div [@triggerName]="prepareRoute(outlet)">
+      <div>
         <router-outlet #outlet="outlet"></router-outlet>
       </div>
       <!-- ------------ -->

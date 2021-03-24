@@ -8,22 +8,27 @@
  *
  ********************************************************************************/
 
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'web422-a4';
+  searchString: string;
 
-  prepareRoute(outlet: RouterOutlet) {
-    return (
-      outlet &&
-      outlet.activatedRouteData &&
-      outlet.activatedRouteData['animationState']
-    );
+  constructor(private router: Router) {}
+
+  handleSearch(): void {
+    this.router.navigate(['/search'], {
+      queryParams: { q: this.searchString },
+    });
+  }
+
+  ngOnInit(): void {
+    this.searchString = '';
   }
 }
