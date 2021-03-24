@@ -13,9 +13,7 @@ export class FavouritesComponent implements OnInit {
 
   ngOnInit(): void {
     this.musicDataService.getFavourites().subscribe((data) => {
-      console.log(data);
       this.favourites = data.tracks;
-      console.log(this.favourites);
     });
   }
 
