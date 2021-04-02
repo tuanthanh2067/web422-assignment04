@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from './../environments/environment';
-import { tap } from 'rxjs/operators';
 
 import { JwtHelperService } from '@auth0/angular-jwt';
 
@@ -24,7 +23,7 @@ export class AuthService {
   readToken(): User {
     const token = this.getToken();
 
-    return this.jwtHelper.decodeToken(token);
+    return helper.decodeToken(token);
   }
 
   isAuthenticated(): boolean {
@@ -34,7 +33,7 @@ export class AuthService {
     return false;
   }
 
-  login(user): Observable<any> {
+  login(user: User): Observable<any> {
     const url = `${environment.userAPIBase}/login`;
     return this.http.post<any>(url, user);
   }
@@ -43,8 +42,8 @@ export class AuthService {
     localStorage.removeItem('access_token');
   }
 
-  register(registerUser): Observable<any> {
-    const url = `${environment.userAPIBase}/login`;
+  register(registerUser: RegisterUser): Observable<any> {
+    const url = `${environment.userAPIBase}/register`;
     return this.http.post<any>(url, registerUser);
   }
 }

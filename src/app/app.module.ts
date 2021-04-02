@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -17,6 +18,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -29,6 +31,7 @@ import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { FavouritesComponent } from './favourites/favourites.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { FavouritesComponent } from './favourites/favourites.component';
     ArtistDiscographyComponent,
     SearchResultComponent,
     FavouritesComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +64,12 @@ import { FavouritesComponent } from './favourites/favourites.component';
     HttpClientModule,
     FormsModule,
     MatSnackBarModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('access_token'),
+        allowedDomains: [new URL(environment.userAPIBase).host],
+      },
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],
