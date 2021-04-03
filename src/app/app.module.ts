@@ -32,6 +32,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { SearchResultComponent } from './search-result/search-result.component';
 import { FavouritesComponent } from './favourites/favourites.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { RegisterComponent } from './register/register.component';
     SearchResultComponent,
     FavouritesComponent,
     RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
