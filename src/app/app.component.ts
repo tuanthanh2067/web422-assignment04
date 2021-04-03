@@ -9,7 +9,10 @@
  ********************************************************************************/
 
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
+
+import { AuthService } from './auth.service';
+import { User } from './User';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +22,9 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'web422-a4';
   searchString: string;
+  token: User;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   handleSearch(): void {
     this.router.navigate(['/search'], {
@@ -30,5 +34,15 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchString = '';
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.token = this.auth.readToken();
+      }
+    });
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['login']);
   }
 }
