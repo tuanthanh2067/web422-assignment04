@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         (data) => {
           this.loading = false;
           localStorage.setItem('access_token', data.token);
-          this.router.navigate(['newRelease']);
+          this.router.navigate(['/newRelease']);
         },
         (err) => {
           this.loading = false;

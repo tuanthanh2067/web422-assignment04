@@ -15,7 +15,7 @@ export class MusicDataService {
     private http: HttpClient
   ) {}
 
-  getNewReleases(): Observable<any> {
+  getNewReleases(): Observable<SpotifyApi.ListOfNewReleasesResponse> {
     return this.spotifyToken.getBearerToken().pipe(
       mergeMap((token) => {
         return this.http.get<any>(
@@ -26,7 +26,7 @@ export class MusicDataService {
     );
   }
 
-  getArtistById(id): Observable<any> {
+  getArtistById(id): Observable<SpotifyApi.SingleArtistResponse> {
     return this.spotifyToken.getBearerToken().pipe(
       mergeMap((token) => {
         return this.http.get<any>(`https://api.spotify.com/v1/artists/${id}`, {
@@ -36,7 +36,7 @@ export class MusicDataService {
     );
   }
 
-  getAlbumsByArtistId(id): Observable<any> {
+  getAlbumsByArtistId(id): Observable<SpotifyApi.ArtistsAlbumsResponse> {
     return this.spotifyToken.getBearerToken().pipe(
       mergeMap((token) => {
         return this.http.get<any>(
@@ -49,7 +49,7 @@ export class MusicDataService {
     );
   }
 
-  getAlbumById(id): Observable<any> {
+  getAlbumById(id): Observable<SpotifyApi.SingleAlbumResponse> {
     return this.spotifyToken.getBearerToken().pipe(
       mergeMap((token) => {
         return this.http.get<any>(`https://api.spotify.com/v1/albums/${id}`, {
@@ -59,7 +59,7 @@ export class MusicDataService {
     );
   }
 
-  searchArtists(searchString): Observable<any> {
+  searchArtists(searchString): Observable<SpotifyApi.ArtistSearchResponse> {
     return this.spotifyToken.getBearerToken().pipe(
       mergeMap((token) => {
         return this.http.get<any>(
